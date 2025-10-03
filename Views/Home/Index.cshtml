@@ -1,8 +1,36 @@
-﻿@{
+@model IEnumerable<GiftOfTheGivers.Models.Event>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Gift of the Givers</h1>
+    <p class="lead">Together we bring hope and relief to communities in need.</p>
 </div>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <h2 class="mt-4">Upcoming Events</h2>
+    <ul class="list-group mt-3">
+        @foreach (var ev in Model)
+        {
+            <li class="list-group-item">
+                <strong>@ev.Title</strong>
+                <br />
+                <span>@ev.Date.ToString("dd MMM yyyy HH:mm")</span> at <span>@ev.Location</span>
+                @if (ev.Project != null)
+                {
+                    <div><em>Project: @ev.Project.Title</em></div>
+                }
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted mt-4">No upcoming events at the moment.</p>
+}
+

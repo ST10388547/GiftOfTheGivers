@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Donation>
+@{
+    ViewData["Title"] = "Donations";
+}
+<h2>Donations</h2>
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Create" class="btn btn-success mb-3">Donate</a>
+}
+<table class="table table-striped">
+    <thead><tr><th>Amount</th><th>Project</th><th>Date</th><th>Donor</th></tr></thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.Amount.ToString("C")</td>
+                <td>@(d.Project?.Title ?? "—")</td>
+                <td>@d.Date.ToLocalTime().ToString("g")</td>
+                <td>@(d.User?.Email ?? "Anonymous")</td>
+            </tr>
+        }
+    </tbody>
+</table>

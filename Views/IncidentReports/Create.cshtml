@@ -1,0 +1,35 @@
+﻿@model IncidentReport
+@{
+    ViewData["Title"] = "Report Incident";
+}
+<h2>Report Incident</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Location" class="form-label"></label>
+        <input asp-for="Location" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Severity" class="form-label"></label>
+        <select asp-for="Severity" class="form-select">
+            <option>low</option>
+            <option>medium</option>
+            <option>high</option>
+            <option>critical</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

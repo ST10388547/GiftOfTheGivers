@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Event>
+@{
+    ViewData["Title"] = "Events";
+}
+<h2>Events</h2>
+@if (User.IsInRole("Admin"))
+{
+    <a asp-action="Create" class="btn btn-success mb-3">Create Event</a>
+}
+<table class="table">
+    <thead><tr><th>Title</th><th>Project</th><th>Date</th><th>Location</th></tr></thead>
+    <tbody>
+        @foreach (var ev in Model)
+        {
+            <tr>
+                <td>@ev.Title</td>
+                <td>@ev.Project?.Title</td>
+                <td>@ev.Date.ToLocalTime().ToString("g")</td>
+                <td>@ev.Location</td>
+            </tr>
+        }
+    </tbody>
+</table>

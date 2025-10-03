@@ -1,0 +1,27 @@
+﻿@model IEnumerable<IncidentReport>
+@{
+    ViewData["Title"] = "Incidents";
+}
+<h2>Incident Reports</h2>
+<p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create" class="btn btn-success">Report Incident</a>
+    }
+</p>
+
+<table class="table table-striped">
+    <thead><tr><th>Title</th><th>Location</th><th>Severity</th><th>Reported</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Title</td>
+                <td>@i.Location</td>
+                <td>@i.Severity</td>
+                <td>@i.ReportedAt.ToLocalTime().ToString("g")</td>
+                <td><a asp-action="Details" asp-route-id="@i.IncidentId" class="btn btn-sm btn-primary">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

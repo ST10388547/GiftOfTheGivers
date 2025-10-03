@@ -1,0 +1,20 @@
+﻿@model Project
+@{
+    ViewData["Title"] = "Project Details";
+}
+<h2>@Model.Title</h2>
+<p><strong>Location:</strong> @Model.Location</p>
+<p><strong>Status:</strong> @Model.Status</p>
+<p>@Model.Description</p>
+
+@if (Model.Events != null && Model.Events.Any())
+{
+    <h4>Events</h4>
+    <ul>
+        @foreach (var e in Model.Events)
+        {
+            <li>@e.Title - @e.Date.ToLocalTime().ToString("g")</li>
+        }
+    </ul>
+}
+

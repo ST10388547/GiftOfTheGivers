@@ -1,0 +1,25 @@
+﻿@model Volunteer
+@{
+    ViewData["Title"] = "Assign Volunteer";
+}
+<h2>Assign @Model.Name</h2>
+
+<form asp-action="Assign" method="post">
+    <input type="hidden" name="volunteerId" value="@Model.VolunteerId" />
+    <div class="mb-3">
+        <label>Project</label>
+        <select name="projectId" class="form-select">
+            <option value="">-- select project --</option>
+            @foreach (var p in (IEnumerable<Project>)ViewBag.Projects)
+            {
+                <option value="@p.ProjectId">@p.Title</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Role (optional)</label>
+        <input name="role" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Assign</button>
+</form>
+
